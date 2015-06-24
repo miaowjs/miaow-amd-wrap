@@ -1,7 +1,7 @@
 var recast = require('recast');
 
 module.exports = function (option, cb) {
-  var ast = recast.parse(this.file.contents.toString());
+  var ast = recast.parse(this.contents.toString());
   var types = recast.types;
   var n = types.namedTypes;
   var defineNode;
@@ -42,7 +42,7 @@ module.exports = function (option, cb) {
     b.expressionStatement(defineExpr)
   ];
 
-  this.file.contents = new Buffer(recast.print(ast).code);
+  this.contents = new Buffer(recast.print(ast).code);
 
   cb();
 };
