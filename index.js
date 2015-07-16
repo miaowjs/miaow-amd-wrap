@@ -5,25 +5,29 @@ module.exports = function (option, cb) {
   var types = recast.types;
   var n = types.namedTypes;
   var defineNode;
+  var requireNode;
 
   //查询define语句
   types.visit(ast, {
     visitCallExpression: function (path) {
       var node = path.node;
 
-      if (
-        n.Identifier.check(node.callee) &&
-        node.callee.name === 'define'
-      ) {
-        defineNode = node;
+      if (n.Identifier.check(node.callee)) {
+        if (node.callee.name === 'define') {
+          defineNode = node;
+        }
+
+        if (node.callee.name === 'require') {
+          requireNode = node;
+        }
       }
 
       this.traverse(path);
     }
   });
 
-  //如果已经有define语句, 就不用再做包装了
-  if (defineNode) {
+  //如果已经有define或是require语句, 就不用再做包装了
+  if (defineNode || requireNode) {
     return cb();
   }
 

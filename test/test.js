@@ -42,5 +42,6 @@ describe('miaow-amd-wrap', function () {
 
   it('不处理AMD模块', function () {
     assert.equal(log.modules['baz.js'].hash, '5beb7b0c870e68432ed9b2bf283ab8c2');
+    assert.equal(log.modules['bar.js'].hash, 'a353c2587d553e94cf29a953f7ea630b');
   });
 });
