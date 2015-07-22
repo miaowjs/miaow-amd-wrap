@@ -1,5 +1,7 @@
 var recast = require('recast');
 
+var getRelativeId = require('./getRelativeId');
+
 module.exports = function (option, cb) {
   var ast = recast.parse(this.contents.toString());
   var types = recast.types;
@@ -34,7 +36,7 @@ module.exports = function (option, cb) {
   var b = recast.types.builders;
 
   var defineExpr = b.callExpression(b.identifier('define'), [
-    b.literal(this.url || this.destPathWithHash),
+    b.literal(getRelativeId(this.output, this)),
     b.functionExpression(
       null,
       [],

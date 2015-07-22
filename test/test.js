@@ -13,7 +13,6 @@ describe('miaow-amd-wrap', function () {
     miaow.compile({
       cwd: path.resolve(__dirname, './fixtures'),
       output: path.resolve(__dirname, './output'),
-      pack: false,
       module: {
         tasks: [
           {
@@ -42,6 +41,6 @@ describe('miaow-amd-wrap', function () {
 
   it('不处理AMD模块', function () {
     assert.equal(log.modules['baz.js'].hash, '5beb7b0c870e68432ed9b2bf283ab8c2');
-    assert.equal(log.modules['bar.js'].hash, 'a353c2587d553e94cf29a953f7ea630b');
+    assert.equal(log.modules['bar.js'].hash, '5cd8d667f333525048dce986c04f0c2c');
   });
 });
