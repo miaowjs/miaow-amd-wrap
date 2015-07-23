@@ -1,7 +1,7 @@
 {
   "name": "miaow-amd-wrap",
   "description": "Miaow的AMD包装工具",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "repository": "miaowjs/miaow-amd-wrap",
   "author": {
     "name": "anhulife",
@@ -13,10 +13,11 @@
     "amd"
   ],
   "dependencies": {
+    "miaow-util": "~0.4.0",
     "recast": "~0.10.12"
   },
   "devDependencies": {
-    "miaow": "^2.3.0",
+    "miaow": "^2.4.1",
     "mocha": "^2.2.4"
   },
   "scripts": {

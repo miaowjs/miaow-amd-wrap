@@ -1,8 +1,10 @@
+var mutil = require('miaow-util');
 var recast = require('recast');
 
 var getRelativeId = require('./getRelativeId');
+var pkg = require('./package.json');
 
-module.exports = function (option, cb) {
+function parse(option, cb) {
   var ast = recast.parse(this.contents.toString());
   var types = recast.types;
   var n = types.namedTypes;
@@ -51,4 +53,6 @@ module.exports = function (option, cb) {
   this.contents = new Buffer(recast.print(ast).code);
 
   cb();
-};
+}
+
+module.exports = mutil.plugin(pkg.name, pkg.version, parse);
