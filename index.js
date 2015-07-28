@@ -5,7 +5,13 @@ var getRelativeId = require('./getRelativeId');
 var pkg = require('./package.json');
 
 function parse(option, cb) {
-  var ast = recast.parse(this.contents.toString());
+  var contents = this.contents.toString();
+
+  if (!contents.trim()) {
+    return cb();
+  }
+
+  var ast = recast.parse(contents);
   var types = recast.types;
   var n = types.namedTypes;
   var defineNode;
