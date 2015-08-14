@@ -41,10 +41,11 @@ function parse(option, cb) {
     return cb();
   }
 
+  var id = this.srcPath + '\'s id holder';
   var b = recast.types.builders;
 
   var defineExpr = b.callExpression(b.identifier('define'), [
-    b.literal(getRelativeId(this.output, this)),
+    b.literal(id),
     b.functionExpression(
       null,
       [],
@@ -57,6 +58,14 @@ function parse(option, cb) {
   ];
 
   this.contents = new Buffer(recast.print(ast).code);
+
+  // 添加ID回写的钩子
+  var module = this;
+  this.addHook(function (cb) {
+    var contents = module.contents.toString();
+    module.contents = new Buffer(contents.replace(id, getRelativeId(module.output, module)));
+    cb();
+  });
 
   cb();
 }

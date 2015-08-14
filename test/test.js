@@ -36,7 +36,7 @@ describe('miaow-amd-wrap', function () {
   });
 
   it('非AMD模块的封装', function () {
-    assert.equal(log.modules['foo.js'].hash, 'b49a2c676956fb0438d3f79bc0992338');
+    assert.equal(log.modules['foo.js'].hash, '2e8cdf00242ff7a9ee2239436acb89a1');
   });
 
   it('不处理AMD模块', function () {
