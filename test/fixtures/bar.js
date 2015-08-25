@@ -1,2 +1,3 @@
-require('foo', function () {
-});
+'use strict';
+
+var foo = require('./foo');
